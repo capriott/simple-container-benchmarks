@@ -13,6 +13,14 @@ echo "dockerhost: $DOCKER_HOST" >> /simple-container-benchmarks.txt
 curl -sS http://$TARGET/ips >> /simple-container-benchmarks.txt || echo 'curl: failed to connect' >> /simple-container-benchmarks.txt
 echo 'date: '$(date) >> /simple-container-benchmarks.txt
 
+# get bonnie performance stats
+echo '' >> /simple-container-benchmarks.txt
+echo '------------------------------' >> /simple-container-benchmarks.txt
+echo 'Bonnie++ performance' >> /simple-container-benchmarks.txt
+echo '------------------------------' >> /simple-container-benchmarks.txt
+curl -sS http://$TARGET/bonnie >> /simple-container-benchmarks.txt || echo 'curl: failed to connect' >> /simple-container-benchmarks.txt
+
+
 
 # get disk performance stats
 echo '' >> /simple-container-benchmarks.txt

@@ -2,6 +2,18 @@ var restify = require('restify');
 var server = restify.createServer();
 var exec = require('shelljs').exec;
 
+server.get('/bonnie', bonnie);
+function bonnie(req, res, next) {
+        console.log('/bonnie request');
+        var thing = exec("(bonnie++ -d /tmp -r 2048 -u 1000) 2>&1", {silent:true}).output;
+
+        console.log(thing);
+
+        res.setHeader('content-type', 'text/plain');
+        res.send(thing);
+        next();
+}
+
 server.get('/disk', disk);
 function disk(req, res, next) {
 	console.log('/disk request');
